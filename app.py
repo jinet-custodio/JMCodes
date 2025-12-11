@@ -23,4 +23,5 @@ def projects():
 # Runs the app only when executed directly
 # (not when imported by another file)
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
