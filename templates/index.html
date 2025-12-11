@@ -1,11 +1,86 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
-<h1>Welcome to My Portfolio</h1>
+<div
+  class="container mt-3 w-100"
+  style="max-width: 96% !important"
+  id="introduction"
+>
+  <div class="row border border-dark-subtle px-2 py-3 rounded-3">
+    <div class="col-md-4">
+      <div class="pic">
+        <img
+          src="{{ url_for('static', filename='Images/Jinet.jpeg') }}"
+          alt="My Picture"
+          class="w-75"
+        />
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h1>Welcome to my Portfolio!</h1>
 
-<p>Hello! I'm Jeanette Mae Custodio.  
-This is a simple Flask portfolio website that I'm building and improving over time.</p>
+      <p class="fs-5 mt-4">
+        Hello! I'm Jeanette Mae Custodio, a 4th-year student from Bulacan
+        Agricultural State College. I am currently exploring web development and
+        project management through hands-on projects. This is a simple Flask
+        portfolio website that I'm building and improving over time.
+        <br />
+        <br />
+        Feel free to explore my projects!
+      </p>
+    </div>
+  </div>
+</div>
 
-<p>Feel free to explore my projects!</p>
+<div
+  class="container mt-5 w-100 border px-2 py-3"
+  style="max-width: 96% !important"
+  id="introduction"
+>
+  <h2 class="mb-4 text-center">My Skills</h2>
 
+  <div class="row text-center">
+    <!-- Programming Skills -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Backend Development</h5>
+          <ul class="list-unstyled mt-3">
+            <li>Python</li>
+            <li>Flask</li>
+            <li>JavaScript</li>
+            <li>PHP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Design Skills -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Frontend Development</h5>
+          <ul class="list-unstyled mt-3">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Bootstrap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Skills -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Other Skills</h5>
+          <ul class="list-unstyled mt-3">
+            <li>Project Management</li>
+            <li>Team Leadership</li>
+            <li>Problem Solving</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

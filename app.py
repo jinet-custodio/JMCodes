@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import os
 
 # Initialize Flask application
 # __name__ tells Flask where to find templates/static files
@@ -16,7 +17,6 @@ def home():
 
 @app.route("/projects")
 def projects():
-    # Renders the projects page
     return render_template("projects.html")
 
 
@@ -24,4 +24,4 @@ def projects():
 # (not when imported by another file)
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
