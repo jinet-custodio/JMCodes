@@ -17,6 +17,8 @@ DB_URL = os.getenv(
 
 if not DB_URL:
     raise RuntimeError("Database URL not set. Check your .env file.")
+print("FLASK_ENV:", FLASK_ENV)
+print("DB URL FOUND:", bool(DB_URL))
 
 def get_db_connection():
     return psycopg2.connect(DB_URL, cursor_factory=RealDictCursor)
