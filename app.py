@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Environment
-FLASK_ENV = os.getenv("FLASK_ENV", "development")
+FLASK_ENV = os.getenv("FLASK_ENV")
 
 DB_URL = os.getenv(
     "DATABASE_URL_DEV" if FLASK_ENV == "development" else "DATABASE_URL_PROD"
