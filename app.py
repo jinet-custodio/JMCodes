@@ -24,7 +24,7 @@ print("SUPABASE CONNECTED:", bool(supabase))
  
 @app.route("/")
 def home():
-    response = supabase.table("certificates").select("*").order("id").execute()
+    response = supabase.table("certificates").select("*").order("certID").execute()
     certificates = response.data
     return render_template("index.html", certificates=certificates)
 
