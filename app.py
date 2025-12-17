@@ -1,37 +1,33 @@
 from flask import Flask, render_template
+from supabase import create_client
 import os
 from dotenv import load_dotenv
-import psycopg2
-from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
 app = Flask(__name__)
 
-# Environment
-FLASK_ENV = os.getenv("FLASK_ENV")
+FLASK_ENV = os.getenv("FLASK_ENV", "development")
 
-DB_URL = os.getenv(
-    "DATABASE_URL_DEV" if FLASK_ENV == "development" else "DATABASE_URL_PROD"
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv(
+    "SUPABASE_ANON_KEY" if FLASK_ENV == "development" else "SUPABASE_SERVICE_KEY"
 )
 
-if not DB_URL:
-    raise RuntimeError("Database URL not set. Check your .env file.")
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise RuntimeError("Supabase credentials not set")
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 print("FLASK_ENV:", FLASK_ENV)
-print("DB URL FOUND:", bool(DB_URL))
-
-def get_db_connection():
-    return psycopg2.connect(DB_URL, cursor_factory=RealDictCursor)
-
+print("SUPABASE CONNECTED:", bool(supabase))
+ 
 @app.route("/")
 def home():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM certificates ORDER BY id;")
-    certificates = cur.fetchall()
-    cur.close()
-    conn.close()
+    response = supabase.table("certificates").select("*").order("id").execute()
+    certificates = response.data
     return render_template("index.html", certificates=certificates)
+
 
 @app.route("/projects")
 def projects():
